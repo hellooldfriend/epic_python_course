@@ -1,3 +1,4 @@
+
 s = "У лукоморья 123 дуб зеленый 456"
 
 def fun_one(s):
@@ -8,7 +9,8 @@ def fun_two(s):
 
 def fun_three(s):
     # swapcase also works here
-    return s.upper()
+    if s.islower():
+        return s.upper()
 
 def fun_four(s):
     # swapcase also works here
@@ -17,7 +19,16 @@ def fun_four(s):
 
 def fun_five(s):
     return s.replace( s[0], 'О')
+################
 
+def fun(s):
+    return f'''
+        1) {fun_one(s)}
+        2) {fun_two(s)}
+        3) {fun_three(s)}
+        4) {fun_four(s)}
+        5) {fun_five(s)}
+    '''
 
-
+print(fun(s))
 

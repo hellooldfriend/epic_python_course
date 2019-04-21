@@ -1,8 +1,12 @@
-#Дано число, введенное с клавиатуры. Определить сумму квадратов нечетных цифр в числе.
+#Дано число, введенное с клавиатуры.
+#Определить сумму квадратов нечетных цифр в числе.
+
+val = int(input('Enter the number: '))
 total = 0
-value = int(input('Enter the number: '))
-for i in range(1, value + 1):
+
+for i in range(val + 1):
     if i % 2 != 0:
-        total += i ** 2
+        n = i ** 2
+        total += n
 
 print(total)

@@ -1,18 +1,27 @@
-
 from random import randint
 value = randint(1, 9)
+count = 3
 
-while True:
-    user_value = input("Enter the number: ")
-    if user_value.lower() == 'exit':
+while count > 0:
+    val = input('Enter the number or type stop: ')
+
+    if val.lower() == 'stop':
         print('End')
-        break
+        count = 0
     else:
-        val = int(user_value)
-        if val == value:
-            print('Correct. End.')
-        elif val > value:
-            print('Your number is bigger. Try again.')
-        elif val < value:
-            print('Your number is smaller. Try again.')
+        n = int(val)
+        count -= 1
+        if count != 0:
+            if n == value:
+                print('Correct. End.')
+                count = 0
+            elif n > value:
+                print(f'Your number is bigger, you have {count} attempts.')
+            elif n < value:
+                print(f'Your number is smaller, you have {count} attempts.')
+        else:
+            print('Game over')
+
+
+
 

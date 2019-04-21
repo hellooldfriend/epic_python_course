@@ -6,7 +6,8 @@ def y(x):
 
 for i in range(10, 31, 2):
     if 10 < i < 30:
-        total += y(3)
+        n = y(3)
+        total += int(n)
 
 print("Total:", total)
 

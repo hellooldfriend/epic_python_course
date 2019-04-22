@@ -20,4 +20,9 @@ for word in lst:
     dct[word] += 1
 
 
-#print(lst.sort())
+from collections import Counter
+most_commom = Counter(lst).most_common(5)
+least_common = Counter(lst).most_common()[:-5-1:-1]
+
+
+print(f'5 most common:{most_commom} \n 5 least common {least_common}')

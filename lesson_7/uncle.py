@@ -9,4 +9,5 @@ for i in lst:
     if i.startswith('м'):
         lst.remove(i)
         s = ' '.join(lst)
-        print(s)
+
+print(s)

@@ -29,4 +29,4 @@ for i in lst:
 print(1, numbers)
 print(2, len(numbers))
 print(3, total)
-print(4, max(numbers))
+print(4, max([int(x) for x in numbers if x.isdigit()]))

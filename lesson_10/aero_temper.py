@@ -28,24 +28,15 @@ max = max(lst)
 sum = 0
 average = 0
 dic = dict()
-
+numbers = list()
 for i in lst:
-    try:
-        i = int(i)
-    except Exception:
-        pass
-
-    try:
-        i = float(i)
-    except Exception:
-        pass
+    i = float(i)
 
     sum += i
     average = round(sum / len(lst), 1)
     n = 1
     dic.setdefault(i, 0)
     dic[i] += 1
-
 
 my_set = set(lst)
 new_list = list(my_set)

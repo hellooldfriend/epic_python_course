@@ -4,19 +4,18 @@
 
 
 import random
+numbers = [random.randint(-500, 500) for i in range(1001)]
 
-numbers = [random.randint(-500, 500) for i in range(1, 1001)]
-
-max_n = max(numbers)
-min_n = min(numbers)
-
-t = 0
-x = list()
-
-for n in numbers:
-    if n < 0:
-        x.append(n)
-        t += 1
+def f(lst):
+    count = 0
+    for n in lst:
+        if n < 0:
+            count += 1
+    return count
 
 
-print(len(x), t)
+min_values_count = f(numbers)
+
+print(min_values_count)
+
+

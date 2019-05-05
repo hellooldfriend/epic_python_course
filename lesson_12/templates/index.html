@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task manager</title>
+</head>
+<body>
+    <h1>{{ name }}</h1>
+
+    <form method="POST">
+        <table>
+            <tbody>
+                <tr>
+                    <td>Tasks</td>
+                    <td>
+                        <input type="text" name="name" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>Category</td>
+                    <td>
+                        <input type="text" name="category" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>Date</td>
+                    <td>
+                        <input type="text" name="datetime" />
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <button>Add task</button>
+    </form>
+
+    <form action='/show_tasks/' method="GET">
+        <button type='submit'>Show all tasks</button>
+    </form>
+
+    <hr />
+    <br />
+    <br />
+
+    <div class="list">
+        <table>
+            <thead>
+                <tr>
+                    <td>id</td>
+                    <td>Name</td>
+                    <td>Category</td>
+                    <td>Date</td>
+                </tr>
+            </thead>
+            <tbody>
+                {% for task in data %}
+                    <tr>
+                        <td>{{task[0]}}</td>
+                        <td>{{task[1]}}</td>
+                        <td>{{task[2]}}</td>
+                        <td>{{task[3]}}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+</body>
+</html>

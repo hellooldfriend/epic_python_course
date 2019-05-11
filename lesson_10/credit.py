@@ -9,6 +9,7 @@ def file_read(what, when):
 
     import csv
     lst = list()
+
     try:
         with open('opendata.csv', encoding='cp1251') as file:
             reader = csv.reader(file)
@@ -17,11 +18,18 @@ def file_read(what, when):
                     year = row[2][:4]
                     if year == str(when):
                         dct = dict()
+
                         if row[1] == 'Россия':
                             continue
+
                         dct.setdefault('region', row[1])
-                        dct.setdefault('value', row[3])
-                        lst.append(dct)
+                        dct.setdefault('value', int(row[3]))
+
+                        if any(x['region'] == row[1] for x in lst):
+                            dct['value'] += int(row[3])
+                        else:
+                            lst.append(dct)
+
         return lst
         print('so done')
     except Exception as e:
@@ -31,18 +39,18 @@ def file_read(what, when):
 
 
 lst = file_read('Количество заявок на потребительские кредиты', 2017)
-
+# print(lst)
 
 def get_value(lst):
+    max_value = 0
 
-    item = [item for item in lst if int(item['value']) == max([int(x['value']) for x in lst])]
-    item = dict(item[0])
-    return item
+    for i in lst:
+        if i['value'] > max_value:
+            max_value = i['value']
+            x = i
 
-
-
+    return x
 
 
 answer = get_value(lst)
-print(f'Регион: {answer["region"]}, кол-во: {answer["value"]}')
-
+print(f"регион: {answer['region']}, показатель: {answer['value']}")

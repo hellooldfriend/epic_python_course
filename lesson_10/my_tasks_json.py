@@ -3,6 +3,19 @@
 #Добавить возможность вывода списка задач.
 
 
+def read(file):
+    import json
+
+    try:
+        with open('tasks.json', 'r') as file:
+            data = json.load(file)
+            # return print(data, type(data))
+            for task in data:
+                print(task)
+    except Exception as error:
+        return error
+
+
 def write(file, lst):
     import json
 
@@ -37,8 +50,7 @@ while True:
         write('tasks.json', lst)
 
     if inp == 2:
-        for i in lst:
-            print(f"Task: {i['name']}, category: {i['category']}, date: {i['datetime']}")
+        read('tasks.json')
 
     if inp == 3:
         break

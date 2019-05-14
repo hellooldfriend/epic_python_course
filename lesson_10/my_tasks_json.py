@@ -2,6 +2,19 @@
 #Для каждой из задач можно задать категорию и срок ее исполнения.
 #Добавить возможность вывода списка задач.
 
+def simple_read(file):
+    import json
+    data = list()
+
+    try:
+        with open('tasks.json', 'r') as file:
+            data = json.load(file)
+            return data
+    except Exception as error:
+        return error
+
+# x = simple_read('tasks.json')
+# print(x)
 
 def read(file):
     import json
@@ -9,7 +22,6 @@ def read(file):
     try:
         with open('tasks.json', 'r') as file:
             data = json.load(file)
-            # return print(data, type(data))
             for task in data:
                 print(task)
     except Exception as error:
@@ -37,6 +49,8 @@ task = {
 lst = list()
 
 while True:
+    data = simple_read('tasks.json')
+
     inp = int(input('Enter the number: '))
 
     if inp == 1:
@@ -46,11 +60,13 @@ while True:
         task['category'] = cat
         date = input('Add a date: ')
         task['datetime'] = date
-        lst.append(task)
-        write('tasks.json', lst)
+        data.append(task)
+        write('tasks.json', data)
 
     if inp == 2:
-        read('tasks.json')
+        for task in data:
+            print(task)
+        # read('tasks.json')
 
     if inp == 3:
         break

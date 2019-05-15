@@ -1,7 +1,16 @@
 
 import tkinter
+import json
 
-tasks = list()
+def read(file):
+    try:
+        with open(file, 'r') as text_file:
+            data = json.load(text_file)
+            return data
+    except Exception as error:
+        return error
+
+tasks = read('my_tasks.json');
 
 def add():
     task = dict()
@@ -24,10 +33,7 @@ def exit():
 def clear_entry(entry):
      entry.delete(0, 'end')
 
-
 def write_file(file, lst):
-    import json
-
     try:
         with open(file, 'w') as new_file:
             json.dump(lst, new_file)
@@ -37,16 +43,8 @@ def write_file(file, lst):
 
 
 def show_tasks():
-    import json
-
-    try:
-        with open('my_tasks.json', 'r') as file:
-            data = json.load(file)
-            # return print(data, type(data))
-            for task in data:
-                print(task)
-    except Exception as error:
-        return error
+    for task in tasks:
+        print(f"task: {task['description']}, category: {task['category']}, date: {task['datetime']}")
 
 
 

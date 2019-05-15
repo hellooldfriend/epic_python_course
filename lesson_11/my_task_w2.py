@@ -1,7 +1,17 @@
-
 import tkinter
+import json
 
-tasks = list()
+
+def read(file):
+    try:
+        with open(file, 'r') as text_file:
+            data = json.load(text_file)
+            return data
+    except Exception as error:
+        return error
+
+tasks = read('my_tasks.json')
+
 
 def add():
     task = dict()
@@ -26,8 +36,6 @@ def clear_entry(entry):
 
 
 def write_file(file, lst):
-    import json
-
     try:
         with open(file, 'w') as new_file:
             json.dump(lst, new_file)
@@ -37,18 +45,14 @@ def write_file(file, lst):
 
 
 def show_tasks():
-    import json
+    # all_tasks = ''
+    i = 1.0
+    for task in tasks:
+        s = f'task: {task["description"]}, category: {task["category"]}, date: {task["datetime"]} \n'
+        # all_tasks += s
+        text_box.insert(i, s)
+    # text_box.config(text=all_tasks)
 
-    try:
-        with open('my_tasks.json', 'r') as file:
-            data = json.load(file)
-            all_tasks = ''
-            for task in data:
-                s = f'task: {task["description"]}, category: {task["category"]}, date: {task["datetime"]} \n'
-                all_tasks += s
-            text_box.config(text=all_tasks)
-    except Exception as error:
-        return error
 
 
 
@@ -102,7 +106,7 @@ button_exit.pack()
 
 ######
 
-text_box = tkinter.Label(frame4)
+text_box = tkinter.Text(frame4, width=35, height=15, wrap=tkinter.WORD)
 text_box.pack()
 
 

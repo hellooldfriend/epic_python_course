@@ -7,7 +7,7 @@
 <body>
     <h1>{{ name }}</h1>
 
-    <form method="POST">
+    <form method="POST" action="/">
         <table>
             <tbody>
                 <tr>
@@ -43,6 +43,7 @@
     <br />
 
     <div class="list">
+        {% if data %}
         <table>
             <thead>
                 <tr>
@@ -63,7 +64,7 @@
                 {% endfor %}
             </tbody>
         </table>
-
+        {% endif %}
     </div>
 </body>
 </html>

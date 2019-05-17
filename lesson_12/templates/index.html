@@ -3,6 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <title>Task manager</title>
+
+<style>
+    body {
+        background: #000;
+        color: #fff;
+        font-size: 20px;
+    }
+
+    .button {
+        font-size: 24px;
+        color: #fff;
+        border: none;
+        outline: none;
+        box-sizing: border-box;
+        padding: 5px 10px;
+        cursor: pointer;
+        position: relative;
+        border-radius: 10px;
+        background: linear-gradient(to right, rgb(34,85,238), rgb(221,0,0));
+    }
+
+    .button:before {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        top: 0;
+        z-index: -1;
+        /*transition: opacity .5s linear;*/
+        opacity: 0;
+        border-radius: 10px;
+        background: linear-gradient(to right,
+           rgb(187,17,17),
+           rgb(34,85,238),
+           rgb(34,85,238),
+           rgb(187,17,17)
+        );
+    }
+
+    .button:hover::before {
+        opacity: 1;
+    }
+
+    .button:disabled {
+        cursor: default;
+        opacity: .5;
+    }
+
+    input {
+        font-size: 100%;
+        box-sizing: border-box;
+        padding: 5px 10px;
+        border: none;
+        background: rgba(0, 85, 102, 0.5);
+        border-radius: 10px;
+        color: #fff;
+        outline: none;
+    }
+
+    input:focus {
+        background: rgba(0, 85, 102, 0.7);
+    }
+
+    thead {
+        font-weight: bold;
+    }
+</style>
 </head>
 <body>
     <h1>{{ name }}</h1>
@@ -31,11 +99,11 @@
             </tbody>
         </table>
 
-        <button>Add task</button>
+        <button class="button _add_task">Add task</button>
     </form>
 
     <form action='/show_tasks/' method="GET">
-        <button type='submit'>Show all tasks</button>
+        <button class="button" type='submit'>Show all tasks</button>
     </form>
 
     <hr />
@@ -66,5 +134,7 @@
         </table>
         {% endif %}
     </div>
+
 </body>
+
 </html>

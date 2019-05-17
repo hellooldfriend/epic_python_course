@@ -9,20 +9,22 @@ while True:
     inp = int(input('Enter the number: '))
 
     if inp == 1:
+        task = list()
         desc = input('Add a description: ')
-        tasks.append(desc)
+        task.append(desc)
         cat = input('Add a category: ')
-        tasks.append(cat)
+        task.append(cat)
         date = input('Add a date: ')
-        tasks.append(date)
+        task.append(date)
+        tasks.append(task)
 
     if inp == 2:
-        tasks = tasks[3:]
+        new_tasks = tasks[3:]
         index = 0
-
-        for i in range(int(len(tasks) / 3)):
-            print(f"Task: {tasks[index]}, category: {tasks[index + 1]}, date: {tasks[index + 2]}")
-            index += 3
+        # print(index)
+        for i in range(len(new_tasks)):
+            print(f"Task: {new_tasks[index][0]}, category: {new_tasks[index][1]}, date: {new_tasks[index][2]}")
+            index += 1
 
     if inp == 3:
         break

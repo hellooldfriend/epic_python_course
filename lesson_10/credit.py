@@ -22,16 +22,15 @@ def file_read(what, when):
                         if row[1] == 'Россия':
                             continue
 
-                        dct.setdefault('region', row[1])
-                        dct.setdefault('value', int(row[3]))
-
-                        if any(x['region'] == row[1] for x in lst):
-                            dct['value'] += int(row[3])
+                        if row[1] in lst:
+                            item = next(i for i in lst if i['region'] == row[1])
+                            item['value'] += int(row[3])
                         else:
-                            lst.append(dct)
+                            dct.setdefault('region', row[1])
+                            dct.setdefault('value', int(row[3]))
+                        lst.append(dct)
 
         return lst
-        print('so done')
     except Exception as e:
         return e
 
@@ -39,7 +38,7 @@ def file_read(what, when):
 
 
 lst = file_read('Количество заявок на потребительские кредиты', 2017)
-# print(lst)
+
 
 def get_value(lst):
     max_value = 0
@@ -53,4 +52,4 @@ def get_value(lst):
 
 
 answer = get_value(lst)
-print(f"регион: {answer['region']}, показатель: {answer['value']}")
+print(f"Чемпиона за 2017 по ипотечным кредитам – регион: {answer['region']}, показатель: {answer['value']}")

@@ -15,7 +15,7 @@ def read():
 @app.route('/show_tasks/', methods=['GET'])
 def show_tasks():
     data = read()
-    return render_template('index.html', name='Shows task', data=data)
+    return render_template('index.html', name='Look at all your tasks', data=data)
 
 
 @app.route('/')
